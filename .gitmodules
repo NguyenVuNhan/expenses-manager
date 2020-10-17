@@ -1,0 +1,6 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/NguyenVuNhan/expenses-manager-be.git
+[submodule "client"]
+	path = client
+	url = https://github.com/NguyenVuNhan/expenses-manager-fe.git
