@@ -9,15 +9,20 @@ services:
       SERVER_PORT: ${SERVER_PORT}
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
-    volumes:
-      - ./
+    command: npm run dev
 
   client:
     build: ./client
-    environment: -${CLIENT_PORT}
-    volumes:
-      - ./src:/app/src
-    ports:
-      - "5000:3000"
-    restart: unless-stopped
+    depends_on:
+      - server
     stdin_open: true
+    environment:
+      CLIENT_PORT: ${CLIENT_PORT}
+    expose:
+      - ${CLIENT_PORT}
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    volumes:
+      - ./client/src:/app/client/src
+      - ./client/public:/app/client/public
+    command: npm start
